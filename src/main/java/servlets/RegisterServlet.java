@@ -30,7 +30,7 @@ public class RegisterServlet extends HttpServlet {
             String query = "INSERT INTO users (email, password) VALUES ('" + email + "', '" + password + "');";
             statement = connection.createStatement();
             statement.executeUpdate(query);
-            query = "SSELECT id FROM users WHERE email = '"+ email +"'";
+            query = "SELECT id FROM users WHERE email = '"+ email +"'";
             ResultSet resultSet = statement.executeQuery(query);
             int id = 0;
             while (resultSet.next()){
@@ -41,7 +41,8 @@ public class RegisterServlet extends HttpServlet {
 
             HttpSession session = request.getSession();
             session.setAttribute("id", id);
-            request.getRequestDispatcher("manager.jsp").forward(request, response);
+            response.sendRedirect("manager.jsp");
+            //request.getRequestDispatcher("manager.jsp").forward(request, response);
 
         } catch (SQLException ex){
             out.println("DataBase is down\n");

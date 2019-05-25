@@ -12,8 +12,8 @@
 </div>
 <nav class="col-sm-2">
     <div class="btn-group-vertical btn-group-sm" role="group" aria-label="Button Group">
-        <button type="button" class="btn btn-secondary" onclick="location.href = ''">BTN?</button>
-        <button type="button" class="btn btn-secondary" onclick="location.href = ''">BUTTON?!?</button>
+        <button id="logout" type="button" class="btn btn-secondary" onclick="location.href = 'index.jsp'">Login</button>
+        <button id="login" type="button" class="btn btn-secondary" onclick="location.href = 'login?out=true'">Logout</button>
     </div>
 </nav>
 </header>

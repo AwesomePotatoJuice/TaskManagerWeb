@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class LoginServlet extends HttpServlet {
+public class LoginLogoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
@@ -47,7 +47,8 @@ public class LoginServlet extends HttpServlet {
                 out.println("Welcome " + email + "! Your password was verified from database.");
                 HttpSession session = request.getSession();
                 session.setAttribute("id", id);
-                request.getRequestDispatcher("manager.jsp").forward(request, response);
+                response.sendRedirect("manager.jsp");
+                //request.getRequestDispatcher("manager.jsp").forward(request, response);
             }
             else{
                 out.println("Welcome ahhhhhh, nope, password is incorrect :(");
@@ -70,8 +71,10 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        //Connection connection = util.DBC.connect();
-        out.println("Get was here");
+        if(request.getParameter("out").equals("true")){
+            HttpSession session = request.getSession();
+            session.setAttribute("id", 0);
+            response.sendRedirect("index.jsp");
+        }
     }
 }
